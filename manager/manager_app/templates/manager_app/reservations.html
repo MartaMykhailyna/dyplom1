@@ -1,0 +1,60 @@
+{% extends "manager_app/tables.html" %}
+{% block title %}Reservations{% endblock %}
+{% block table %}
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>ID Взуття</th>
+            <th>Назва</th>
+            <th>Колір</th>
+            <th>Модель</th>
+            <th>Розмір</th>
+            <th>Кількість</th>
+            <th>Час бронювання</th>
+            <th>Час закінчення бронювання</th>
+            <th>Користувач</th> 
+            <th>Керування</th> 
+        </tr>
+    </thead>
+    <tbody>
+{% for item in data %}
+        <tr>
+            <td>{{ item.id_reservation }}</td>
+            <td>{{ item.r_shoes.id_shoes }}</td>
+            <td>{{ item.r_shoes.sh_name }}</td>
+            <td>{{ item.r_shoes.sh_color }}</td>
+            <td>{{ item.r_shoes.sh_model }}</td>
+            <td>{{ item.r_size }}</td>
+            <td>{{ item.r_count }}</td>
+            <td>{{ item.r_start_date }}</td>
+            <td>{{ item.r_end_date }}</td>
+            <td>{{ item.r_user.u_username }}</td>
+            <td class="table-controls" style="min-width: 30px">
+                <!-- <button onclick="openModalForm(event);return false;" class="btn-edit"><i class="fa-regular fa-pen-to-square"></i></button> -->
+                <!-- <button class="btn-edit"><i class="fa-regular fa-pen-to-square"></i></button> -->
+                <div class="btn-edit">
+                    <a href="{% url 'update-reservation' item.id_reservation %}">
+                      <i class="fa-regular fa-pen-to-square"></i>
+                    </a>
+                  </div>
+                <button class="btn-delete">
+                    <form action="{% url 'reservations-delete' item.id_reservation %}" method="post">
+                        {% csrf_token %}
+                        <button type="submit" style="background:none; border:none; padding:0; margin:0;">
+                            <i class="fa-solid fa-trash-can"></i>
+                        </button>
+                    </form>
+                </button>
+                <button class="btn-confirm">
+                    
+                        <button type="submit" style="background: none; border: none;">
+                            <i class="fa-regular fa-circle-check"></i>
+                        </button>
+                    <!-- </form> -->
+                </button>
+              </td>                
+
+        </tr>
+        {% endfor %}
+    </tbody>
+{% endblock %}

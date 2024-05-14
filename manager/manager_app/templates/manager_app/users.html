@@ -1,0 +1,62 @@
+{% extends "manager_app/tables.html" %}
+{% block title %}Users{% endblock %}
+{% block table %}
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Унікальне ім'я в системі</th>
+                <th>Ім'я</th>
+                <th>Прізвище</th>
+                <th class="th-row-email">Email</th>
+                <th>Номер телефону</th>
+                <th>Роль</th>
+                <th>Статус</th>
+                <th>Управління</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in data %}
+            <tr>
+                <td>{{ item.id_user }}</td>
+                <td>{{ item.u_username }}</td>
+                <td>{{ item.u_name }}</td>
+                <td>{{ item.u_surname }}</td>
+                <td class="td-row-email">{{ item.u_email }}</td>
+                <td>{{ item.u_phone }}</td>
+                <td>{{ item.u_role }}</td>
+                <td>
+                    {% if item.u_status == True %}
+                        <div class="access-active"><span>Active</span></div>
+                    {% else %}
+                        <div class="access-non-active"><span>Non active</span></div>
+                    {% endif %}
+                </td>
+                <td class="table-controls" style="min-width: 30px">
+                    <!-- <button onclick="openModalForm(event);return false;" class="btn-edit"><i class="fa-regular fa-pen-to-square"></i></button> -->
+                    <!-- <button class="btn-edit"><i class="fa-regular fa-pen-to-square"></i></button> -->
+                    <div class="btn-edit">
+                        <a href="{% url 'update-user' item.id_user %}">
+                          <i class="fa-regular fa-pen-to-square"></i>
+                        </a>
+                      </div>
+                    <button class="btn-delete">
+                        <form action="{% url 'users-delete' item.id_user %}" method="post">
+                            {% csrf_token %}
+                            <button type="submit" style="background:none; border:none; padding:0; margin:0;">
+                                <i class="fa-solid fa-trash-can"></i>
+                            </button>
+                        </form>
+                    </button>
+                    <button class="btn-confirm">
+                        <form action="{% url 'users_toggle_status' item.id_user %}" method="post">
+                            {% csrf_token %}
+                            <button type="submit" style="background: none; border: none;">
+                                <i class="fa-regular fa-circle-check"></i>
+                            </button>
+                        </form>
+                    </button>
+                  </td>                
+            </tr>
+            {% endfor %}
+        </tbody>
+{% endblock %}

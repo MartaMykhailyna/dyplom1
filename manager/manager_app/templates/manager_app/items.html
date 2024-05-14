@@ -1,0 +1,126 @@
+{% extends "manager_app/tables.html" %}
+{% load static %}
+{% block title %}Items{% endblock %}
+{% block table %}
+<div class="dropdown-container">
+  <button class="dropdown-button main-button">
+    <span class="dropdown-title-icon">
+      <i class="fa-solid fa-sterling-sign"></i>
+    </span>
+    <span class="dropdown-title text-truncate">GBP</span>
+    <span class="dropdown-arrow" style="display: flex; justify-content: center; align-items: center;">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="-3 -3 20 20">
+        <path
+          d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z" />
+      </svg>
+    </span>
+  </button>
+  <div class="dropdown-list-container">
+    <div class="dropdown-list-wrapper">
+      <ul class="dropdown-list"></ul>
+      <!-- <div class="floating-icon" aria-hidden="true"></div> -->
+    </div>
+  </div>
+</div>
+<thead>
+  <tr>
+    <th><input type="checkbox" name="headerCheckbox" id="headerCheckbox"></th>
+    <th>ID</th>
+    <th>Фото</th>
+    <th>Назва</th>
+    <th>Модель</th>
+    <th>Розмір</th>
+    <th>Колір</th>
+    <th>Кількість</th>
+    <th>Виробник</th>
+    <th>Вартість</th>
+    <th>Управління</th>
+  </tr>
+</thead>
+<tbody>
+  {% for item in data %}
+  <tr>
+    <td><input type="checkbox" name="dataCheckbox" value="{{ item.id }}"></td>
+    <td data-id="{{ item.id_shoes }}">{{ item.id_shoes }}</td>
+    <td>
+      <img src="{{ item.sh_image.url }}" alt="">
+    </td>
+    <!-- <td><a onclick="openModal() ">{{ item.sh_name }}</a></td> -->
+    <td>
+      <a href="#" class="open-modal" data-action="{% url 'items-photos' item.id_shoes %}" data-id="{{ item.id_shoes }}"
+        data-name="{{ item.sh_name }}" data-model="{{ item.sh_model }}" data-size="{{ item.sh_size }}"
+        data-color="{{ item.sh_color }}" data-count="{{ item.sh_count }}" data-manufacturer="{{ item.sh_manufacturer }}"
+        data-price="{{ item.sh_price }}" onclick="openModal(event); return false;">{{ item.sh_name }}
+      </a>
+    </td>
+    <!-- <td ><span class="item-name">{{ item.sh_name }}</span></td> -->
+    <td>{{ item.sh_model }}</td>
+    <td>{{ item.sh_size }}</td>
+    <td>{{ item.sh_color }}</td>
+    <td>{{ item.sh_count }}</td>
+    <td>{{ item.sh_manufacturer }}</td>
+    <!-- <td>{{ item.sh_price }}</td> -->
+    <td> <span class="product-price" data-base-price="{{ item.sh_price }}">£{{item.sh_price}}</span> </td>
+    <td class="table-controls" style="min-width: 30px">
+      <!-- <button class="btn-edit" id="openEditModal"><i class="fa-regular fa-pen-to-square"></i></button> -->
+      <div class="btn-edit">
+        <a href="{% url 'update-item' item.id_shoes %}">
+          <i class="fa-regular fa-pen-to-square"></i>
+        </a>
+      </div>
+      <button class="btn-delete">
+        <form action="{% url 'items-delete' item.id_shoes %}" method="post">
+            {% csrf_token %}
+            <button type="submit" style="background:none; border:none; padding:0; margin:0;">
+                <i class="fa-solid fa-trash-can"></i>
+            </button>
+        </form>
+    </button>
+      <button class="btn-confirm"><i class="fa-regular fa-circle-check"></i></button>
+    </td>
+  </tr>
+  {% endfor %}
+</tbody>
+{% endblock %}
+
+
+
+
+{% block modals-detailed-view %}
+
+<div id="modal" class="mw-container-item-detail">
+  <div class="mw-item-detail-content">
+    <!-- <span class="close" onclick="closeModal()">&times;</span> -->
+    <a class="close" href="{% url 'items' %}">&times;</a>
+    <div class="carousel-container">
+      <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+          {% for p in photos %}
+          <div class="carousel-item {% if forloop.first %}active{% endif %}">
+            <img src="{{ p.images.url }}" alt="" width="300px" height="300px">
+          </div>
+          {% endfor %}
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+      </div>
+    </div>
+    <div class="mw-di-second-column-container">
+      <h1>{{ item.sh_name }}</h1>
+      <p>ID: {{ item.id_shoes }}</p>
+      <p>Model: {{ item.sh_model }}</p>
+      <p>Size: {{ item.sh_size }}</p>
+      <p>Color: {{ item.sh_color }}</p>
+      <p>Count: {{ item.sh_count }}</p>
+      <p>Price: £{{ item.sh_price }}</p>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
