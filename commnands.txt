@@ -1,0 +1,207 @@
+py manage.py runserver
+pipenv run py manage.py makemigrations
+pipenv run py manage.py migrate
+
+python manage.py test manager_app
+
+pipenv run py echo_bot.py
+
+pipenv run py manage.py runserver
+pipenv run py manage.py livereload
+
+modal from
+
+<script>
+  // JavaScript для відкриття та закриття модального вікна
+  document.getElementById('openEditModal').addEventListener('click', function() {
+      var shoesId = this.getAttribute('data-id');
+      populateForm(shoesId); // Заповнення форми з даними вибраного взуття
+      $('#editShoesModal').modal('show'); // Відкриття модального вікна
+  });
+
+  document.querySelector('.close').addEventListener('click', function() {
+      $('#editShoesModal').modal('hide'); // Закриття модального вікна
+  });
+
+  // Функція для заповнення форми даними вибраного взуття
+  function populateForm(shoesId) {
+      // Здійснення AJAX-запиту для отримання даних взуття за його ID
+      fetch(`/get_shoes_data/${shoesId}/`)
+      .then(response => response.json())
+      .then(data => {
+          document.getElementById('id_shoes').value = shoesId;
+          document.getElementById('sh_name').value = data.sh_name;
+          document.getElementById('sh_model').value = data.sh_model;
+          document.getElementById('sh_size_array').value = data.sh_size_array;
+          document.getElementById('sh_color').value = data.sh_color;
+          document.getElementById('sh_manufacturer').value = data.sh_manufacturer;
+          document.getElementById('sh_count').value = data.sh_count;
+          document.getElementById('sh_price').value = data.sh_price;
+          // Можливо, ще потрібно заповнити інші поля за потребою
+      })
+      .catch(error => {
+          console.error('Помилка отримання даних взуття:', error);
+      });
+  }
+
+  // AJAX-запит для оновлення даних
+  document.getElementById('editShoesForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+      var formData = new FormData(this);
+      fetch('/update_item/', {
+          method: 'POST',
+          body: formData,
+          headers: {
+              'X-CSRFToken': document.querySelector('input[name="csrfmiddlewaretoken"]').value
+          }
+      })
+      .then(response => response.json())
+      .then(data => {
+          if (data.success) {
+              alert('Дані успішно оновлено!');
+              $('#editShoesModal').modal('hide'); // Закриття модального вікна після успішного оновлення
+              // Додаткові дії, якщо потрібно оновити інтерфейс
+          } else {
+              alert('Помилка оновлення даних: ' + data.error);
+          }
+      })
+      .catch(error => {
+          console.error('Помилка оновлення даних:', error);
+      });
+  });
+</script>
+
+
+
+
+        <div class="brand-logo-container">
+          <img src="{% static 'manager_app/img/brands-h-m.svg' %}" alt="" class="brand-logo">
+        </div>
+        <div class="brand-logo-container">
+          <img src="{% static 'manager_app/img/brands-obey.svg' %}" alt="" class="brand-logo">
+        </div>
+        <div class="brand-logo-container">
+          <img src="{% static 'manager_app/img/brands-shopify.svg' %}" alt="" class="brand-logo">
+        </div>
+        <div class="brand-logo-container">
+          <img src="{% static 'manager_app/img/brands-lacoste.svg' %}" alt="" class="brand-logo">
+        </div>
+        <div class="brand-logo-container">
+          <img src="{% static 'manager_app/img/brands-levis.svg' %}" alt="" class="brand-logo">
+        </div>
+        <div class="brand-logo-container">
+          <img src="{% static 'manager_app/img/brands-amazon.svg' %}" alt="" class="brand-logo">
+        </div>
+
+
+          <section class="new-arrivals-container">
+      <div class="name-of-section-container new-arrivals__name-of-section-container">
+        <h2 class="name-of-section new-arrivals__name-of-section">
+          new arrivals
+        </h2>
+        <div class="new-arrivals__leaf"></div>
+      </div>
+      <div class="new-arrivals__cards-container">
+        <div class="new-arrivals__card">
+          <div class="new-arrivals__card-img-container">
+            <img src="{% static 'manager_app/img/' %}" alt="">
+          </div>
+          <div class="new-arrivals__card-description">
+            <p></p>
+            <i class="fa-solid fa-arrow-right-long"></i>
+          </div>
+        </div>
+        <div class="new-arrivals__card">
+          <div class="new-arrivals__card-img-container">
+            <img src="{% static 'manager_app/img/' %}" alt="">
+          </div>
+          <div class="new-arrivals__card-description">
+            <p></p>
+            <i class="fa-solid fa-arrow-right-long"></i>
+          </div>
+        </div>
+        <div class="new-arrivals__card">
+          <div class="new-arrivals__card-img-container">
+            <img src="{% static 'manager_app/img/' %}" alt="">
+          </div>
+          <div class="new-arrivals__card-description">
+            <p></p>
+            <i class="fa-solid fa-arrow-right-long"></i>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
+
+
+
+
+
+        <div class="new-arrivals__card">
+          <div class="new-arrivals__card-img-container">
+            <img src="{% static 'manager_app/img/new-arrival-nike-air-max.webp' %}" alt="">
+          </div>
+          <div class="new-arrivals__card-description">
+            <p>trainers</p>
+            <i class="fa-solid fa-arrow-right-long"></i>
+          </div>
+        </div>
+        <div class="new-arrivals__card">
+          <div class="new-arrivals__card-img-container">
+            <img src="{% static 'manager_app/img/new-arrival-tan-brown.webp' %}" alt="">
+          </div>
+          <div class="new-arrivals__card-description">
+            <p>sandalas</p>
+            <i class="fa-solid fa-arrow-right-long"></i>
+          </div>
+        </div>
+        <div class="new-arrivals__card">
+          <div class="new-arrivals__card-img-container">
+            <img src="{% static 'manager_app/img/new-arrival-white-slip.webp' %}" alt="">
+          </div>
+          <div class="new-arrivals__card-description">
+            <p>trainers?</p>
+            <i class="fa-solid fa-arrow-right-long"></i>
+          </div>
+        </div>
+
+
+
+         <swiper-container class="mySwiper"  space-beetwen="30" autoplay="true" loop="true">
+          <div class="swiper">
+          <swiper-slide class="new-arrivals__card">
+            <div class="new-arrivals__card">
+              <div class="new-arrivals__card-img-container">
+                <img src="{% static 'manager_app/img/new-arrival-nike-air-max.webp' %}" alt="">
+              </div>
+              <div class="new-arrivals__card-description">
+                <p>trainers</p>
+                <i class="fa-solid fa-arrow-right-long"></i>
+              </div>
+            </div>
+          </swiper-slide>
+          <swiper-slide class="new-arrivals__card">
+            <div class="new-arrivals__card">
+              <div class="new-arrivals__card-img-container">
+                <img src="{% static 'manager_app/img/new-arrival-tan-brown.webp' %}" alt="">
+              </div>
+              <div class="new-arrivals__card-description">
+                <p>sandalas</p>
+                <i class="fa-solid fa-arrow-right-long"></i>
+              </div>
+            </div>
+          </swiper-slide>
+          <swiper-slide class="new-arrivals__card">
+            <div class="new-arrivals__card">
+              <div class="new-arrivals__card-img-container">
+                <img src="{% static 'manager_app/img/new-arrival-white-slip.webp' %}" alt="">
+              </div>
+              <div class="new-arrivals__card-description">
+                <p>trainers?</p>
+                <i class="fa-solid fa-arrow-right-long"></i>
+              </div>
+            </div>
+          </swiper-slide>
+        </div>
+      </swiper-container>

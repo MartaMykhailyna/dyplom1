@@ -1,0 +1,43 @@
+.analytics-page-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto;
+    padding: 40px;
+}
+.order-sum-container {
+}
+.analytics-column-container {
+    border-radius: 10%;
+    -webkit-box-shadow: 0px 0px 28px -3px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 0px 28px -3px rgba(0,0,0,0.75);
+    box-shadow: 0px 0px 28px -3px rgba(0,0,0,0.75);
+    width: 200px;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.analytics-container__name-of-column {
+    text-align: center;
+    color: rgb(117, 117, 117);
+}
+.analytics-container__calculation{
+    color: var(--accent-color-green);
+    font-weight: 600;
+    font-size: 45px;
+}
+.order-sum-avarage-container {
+}
+.order-sum-max-container {
+}
+.order-sum-min-container {
+}
+.order-sum-for-month-container {
+}
+#chart{
+    border: 2px solid firebrick;
+    width: 500px;
+    height: 500px;
+}

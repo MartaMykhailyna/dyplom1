@@ -1,0 +1,46 @@
+{% extends "manager_app/layout.html" %}
+{% block content %}
+              <div class="form-container">
+                <form id="update_ordeo_form" method="post" action="{% url 'manager_edit:update-user' user.id_user %}">
+                    {% csrf_token %}
+                    <div class="input-and-label-container">
+                        <label for="u_username">Ім'я користувача:</label>
+                        <input type="text" id="u_username" name="u_username" value="{{ user.u_username }}" >
+                    </div>
+                    <div class="input-and-label-container">
+                        <label for="u_name">Ім'я:</label>
+                        <input type="text" id="u_name" name="u_name" value="{{ user.u_name }}">
+                    </div>
+                    <div class="input-and-label-container">
+                        <label for="u_surname">Прізвище:</label>
+                        <input type="text" id="u_surname" name="u_surname" value="{{ user.u_surname }}" >
+                    </div>
+                    <div class="input-and-label-container">
+                        <label for="u_email">Email:</label>
+                        <input type="email" id="u_email" name="u_email" value="{{ user.u_email }}" >
+                    </div>
+                    <div class="input-and-label-container">
+                        <label for="u_phone">Номер телефону:</label>
+                        <input type="text" id="u_phone" name="u_phone" value="{{ user.u_phone }}" >
+                    </div>
+                    <div class="input-and-label-container">
+                        <label for="u_role">Роль:</label>
+                        <select id="u_role" name="u_role">
+                            {% for value, name in user_roles %}
+                                <option value="{{ value }}" {% if value == user.u_role %} selected {% endif %}>{{ name }}</option>
+                            {% endfor %}
+                        </select>                    
+                    </div>
+                    <div class="input-and-label-container">
+                        <label for="u_status">Статус:</label>
+                        <input type="checkbox" id="u_status" name="u_status" {% if user.u_status %}checked{% endif %}/>                   
+                    </div>
+                    <button type="submit" class="btn">Зберегти</button>
+                </form>
+               </div>
+               {% if messages %}
+               {% for message in messages %}
+                   <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+               {% endfor %}
+           {% endif %}
+{% endblock %}

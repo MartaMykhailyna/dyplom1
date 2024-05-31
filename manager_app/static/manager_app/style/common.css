@@ -1,0 +1,214 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+body{
+    background-color: #eee; 
+    /* background-color: #fff;  */
+}
+.landing{
+    display: flex;
+    font-family: Ubuntu, sans-serif;
+    height: auto;
+    height: 100%;
+}
+img{
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+a{
+    text-decoration: none;
+    color: black;
+}
+button{
+    background-color: transparent;
+    margin: 0;
+    padding: 0;
+    border: none;
+}
+i{
+    margin: 0;
+    padding: 0;
+    /* border: none; */
+}
+a:hover{
+    color: dimgrey;
+}
+:root{
+    --accent-color-green: #43645A;
+    --accent-color-gray: #909090;
+    --accent-color-violet: #474554;
+    --accent-font-color: #FAF7FF;
+    --background-color: #eee;
+    --welcome-page-accent-color: #EBD96B;
+    /* background-color: #909090;
+    background-color: #474554;
+    background-color: #43645A; */
+
+    --bg-color: #222429;
+    --primary-bg-color: #333740;
+    --primary-color: #2c62f6;
+    --text-color: #b1b8ca;
+    --text-active: #ffffff;
+    --button-hover-bg-color: #2d2d2d0d;
+    --border-color: #494d59;
+    --dropdown-height: 0;
+    --rotate-arrow: 0;
+    --translate-value: 0;
+    --list-opacity: 0;
+    --transition-time: 0.4s;
+    --transition-timing: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    --border-radius: 1.4rem;
+    --list-button-height: 2rem;
+    --floating-icon-size: 26;
+    --floating-icon-top: 0;
+    --floating-icon-left: 0;
+
+    --main-page-font-size-mobile: 22px;
+}
+li{
+    list-style: none;
+    display: flex;
+}
+.access-active{
+    background-color:  #75ab26;
+    color: white;
+    border-radius: 30px;
+    width: 70%;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+}
+.access-non-active{
+    background-color: lightgray;
+    border-radius: 30px;
+    margin: 0 auto;
+    width: 70%;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+main{
+    width: 100%;
+    overflow: hidden;
+}
+.table-container{
+    /* border: 1px solid black; */
+    max-width: 1500px;
+    width: 100%;
+    margin: 20px auto;
+    padding: 0 20px;
+}
+table{
+    /* border: 2px solid red; */
+    margin: 0 auto;
+}
+table th , table td{
+    text-align: center;
+    max-width: 40px;
+    margin: 0 2px;
+    vertical-align: middle;
+}
+th:first-child, td:first-child{
+    max-width: 20px;
+}
+.td-row-email, .th-row-email{
+    max-width: 70px;
+}
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: rgba(255, 255, 255, 0.05);
+    /* background-color: rgba(255, 255, 255); */
+}
+table tr:nth-child(even){
+    /* background-color: #e4e3e3 */
+}
+.table-striped tbody tr:hover{
+    background-color: #2d2d2d0d;
+}
+.table tbody+tbody {
+    border: none;
+}
+th {
+  background: #333;
+  color: #fff;
+}
+/* table.table.table-striped tr th:first-child, td:first-child{
+    display: none;
+} */
+.pagination-container{
+    /* border: 2px solid violet; */
+    max-height: 20px;
+
+}
+.pagination {
+  margin: 0;
+}
+
+.pagination li:hover{
+    cursor: pointer;
+}
+
+.header_wrap {
+  padding: 0 30px;
+  display: flex;
+  float: right;
+  width: 40%;
+  justify-content: space-between;
+  gap: 5px;
+}
+.num_rows {
+  width: 22%;
+  border-radius: var(--border-radius);
+  /* float:left; */
+}
+.num_rows .form-control{
+    border-radius: var(--border-radius);
+}
+.tb_search{
+  width: 80%;
+  /* float:right; */
+}
+.tb_search .form-control{
+    border-radius: var(--border-radius);
+}
+.pagination-container {
+  width: 70%;
+  float:left;
+}
+.pagination{
+    /* width: 100%; */
+    /* border: 1px solid var(--accent-color-green); */
+}
+.page-item{
+    border: 1px solid var(--accent-color-violet);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 35px;
+    height: 35px;
+    border-radius: 9%;
+  margin-bottom: 30px;
+
+}
+.page-item.active{
+    background-color: #43645a6e;
+}
+.rows_count {
+  width: 20%;
+  float:right;
+  text-align:right;
+  color: #333;
+  margin-bottom: 30px;
+  margin-right: 30px;
+  /* border: 2px solid wheat; */
+}
+.table-controls button{
+    width: 30%;
+    height: auto;
+    cursor:pointer;
+}

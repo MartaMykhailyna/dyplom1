@@ -1,0 +1,233 @@
+{% extends "manager_app/layout.html" %}
+{% load static %}
+ {% block wrapper %}
+<div class="main-wrapper">
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-light">
+      <a class="navbar-brand" href="#"
+        ><i class="fa-solid fa-shoe-prints"></i>Boots</a
+      >
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarNav"
+        aria-controls="navbarNav"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-end navbar-collapse-container" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item active">
+            <a class="nav-link" href="#"
+              >Home <span class="sr-only">(current)</span></a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Brands</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">New</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Contact</a>
+          </li>
+        </ul>
+        <div class="header__btn-container " style="border: 2px solid a">
+          <a href="{% url 'manager_login:login' %}" class="header__btn-login-container header__btn nav-link">
+            <div class=""><span>Log in</span></div>
+          </a>
+        </div>
+      </div>
+    </nav>
+  </header>
+  <main style="position: relative;">
+    <section class="get-started-container">
+      <div class="get-started-text">
+        <div class="get-started-text__main-text">
+          <h1>
+            <span class="get-started-text__main-text-first-word">
+              <span>давайте</span>
+            </span>
+            досліджувати 
+            <span class="get-started-text__main-text-first-word get-started-text__main-text-third-word">
+              <span>унікальне</span>
+            </span>
+            взуття.
+          </h1>
+        </div>
+        <p>Живіть впливовою та інноваційною модою!</p>
+        <a href="#contact-us-container" class="get-started__btn-container">
+          <div class="get-started__btn">
+            <span>Купити зараз</span>
+          </div>
+        </a>
+      </div>
+      <div class="get-started-artwork">
+        <div class="get-started-artwork__image-container">
+          <img src="{% static 'manager_app/img/main-page-get-started-image.svg' %}" alt="">
+        </div>
+      </div>
+    </section>
+    <section class="section-brands-container">
+      <div class="brands-slider ">
+        <div class="owl-carousel">
+          <div class="brand-logo-container ">
+            <img src="{% static 'manager_app/img/brands-h-m.svg' %}" alt="" class="brand-logo">
+          </div>
+          <div class="brand-logo-container">
+            <img src="{% static 'manager_app/img/brands-obey.svg' %}" alt="" class="brand-logo">
+          </div>
+          <div class="brand-logo-container">
+            <img src="{% static 'manager_app/img/brands-shopify.svg' %}" alt="" class="brand-logo">
+          </div>
+          <div class="brand-logo-container">
+            <img src="{% static 'manager_app/img/brands-lacoste.svg' %}" alt="" class="brand-logo">
+          </div>
+          <div class="brand-logo-container">
+            <img src="{% static 'manager_app/img/brands-levis.svg' %}" alt="" class="brand-logo">
+          </div>
+          <div class="brand-logo-container">
+            <img src="{% static 'manager_app/img/brands-amazon.svg' %}" alt="" class="brand-logo">
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="new-arrivals-container">
+      <div class="name-of-section-container new-arrivals__name-of-section-container">
+        <h2 class="name-of-section new-arrivals__name-of-section">
+          new arrivals
+        </h2>
+        <div class="new-arrivals__leaf">
+          <img src="{% static 'manager_app/img/new-arrivals-name-vector.svg' %}" alt="">
+        </div>
+      </div>
+      <div class="new-arrivals__cards-container">
+        <swiper-container class="mySwiper" space-beetwen="30" autoplay="true" loop="true" pagination="false">
+          <swiper-slide class="new-arrivals__card">
+            <div class="new-arrivals__card">
+              <div class="new-arrivals__card-img-container">
+                <img src="{% static 'manager_app/img/new-arrival-nike-air-max.webp' %}" alt="">
+              </div>
+              <div class="new-arrivals__card-description">
+                <p>trainers</p>
+                <i class="fa-solid fa-arrow-right-long"></i>
+              </div>
+            </div>
+          </swiper-slide>
+          <swiper-slide class="new-arrivals__card">
+            <div class="new-arrivals__card">
+              <div class="new-arrivals__card-img-container">
+                <img src="{% static 'manager_app/img/new-arrival-tan-brown.webp' %}" alt="">
+              </div>
+              <div class="new-arrivals__card-description">
+                <p>sandalas</p>
+                <i class="fa-solid fa-arrow-right-long"></i>
+              </div>
+            </div>
+          </swiper-slide>
+          <swiper-slide class="new-arrivals__card">
+            <div class="new-arrivals__card">
+              <div class="new-arrivals__card-img-container">
+                <img src="{% static 'manager_app/img/new-arrival-white-slip.webp' %}" alt="">
+              </div>
+              <div class="new-arrivals__card-description">
+                <p>trainers?</p>
+                <i class="fa-solid fa-arrow-right-long"></i>
+              </div>
+            </div>
+          </swiper-slide>
+      </swiper-container>
+
+      </div>
+    </section>
+    <section class="about-us-container">
+      <div class="name-of-section-container about-us__name-of-section-container">
+        <h2 class="name-of-section new-arrivals__name-of-section">
+          About Us
+        </h2>
+        </div>
+        <div class="about-us-content">
+      <div class="about-us-artwork">
+        <img src="{% static 'manager_app/img/about-us-team.jpg' %}" alt="">
+      </div>
+      <div class="about-us-text">
+        <p> </p>
+      </div>
+    </div>
+    </section>
+    <section id="contact-us-container" class="contact-us-container">
+      <div class="contact-us__main-text-container">
+        <h3>Запрошуємо до співпраці</h3>
+        <p>Надсилай свою електронну адресу і ми розповімо деталі</p>
+        <form action="{% url 'manager_welcome:send-email' %}" method="post" class="contact-us__input-container">
+          {% csrf_token %}
+          <input type="email" placeholder="Email" name="contact-us" id="contact-us-field">
+            <input type="submit"  value="Надіслати" name="contact-us-btn" id="contact-us-btn-confirm">
+        </form>
+      </div>
+    </section>
+  </main>
+  <footer>
+    <div class="footer__logo-container">
+      <a class="footer__logo" href="#">
+        <i class="fa-solid fa-shoe-prints"></i>
+        Boots
+      </a>
+    </div>
+    <div class="footer__rigths-container"><p><i class="fa-regular fa-copyright"></i> 2024 All rights reserved.</p></div>
+    <div class="footer__contacts">
+      <p class="footer-phone">+380 95 434 23 24</p>
+      <p class="footer-email">boots.cooperate@email.com</p>
+    </div>
+  </footer>
+</div>
+<script>
+  function indexOpenModal() {
+        document.getElementById('emailModal').style.display = 'block';
+    }
+
+    function indexCloseModal() {
+        document.getElementById('emailModal').style.display = 'none';
+    }
+
+    window.onclick = function(event) {
+        const modal = document.getElementById('emailModal');
+        if (event.target == modal) {
+          indexCloseModal();
+        }
+    }
+    </script>
+<script>
+  
+
+// //////////////////////////////////////////////////////////////////////
+
+const swiperEl = document.querySelector('swiper-container')
+Object.assign(swiperEl, {
+    slidesPerView: 1,
+    spaceBetween: 10,
+    pagination: {
+        clickable: true,
+    },
+    breakpoints: {
+        "@0.00": {
+            slidesPerView: 1,
+            spaceBetween: 10,
+        },
+       661 : {    ////"@1.79"
+            slidesPerView: 2,
+            spaceBetween: 20,
+        },
+        1170: {
+            slidesPerView: 3,
+            spaceBetween: 90,
+        },
+    },
+});
+
+
+ </script>
+{% endblock wrapper %}

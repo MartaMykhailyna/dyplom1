@@ -1,0 +1,32 @@
+{% extends "manager_app/layout.html" %}
+{% block content %}
+              <div class="form-container">
+                <form id="update_reservation_form" method="post" action="{% url 'manager_add:add-reservation'  %}">
+                    {% csrf_token %}
+                    <div class="input-and-label-container">
+                        <label for="r_shoes">Взуття:</label>
+                        <select id="r_shoes" name="r_shoes" required>
+                            {% for shoe in shoes_list %}
+                                <option value="{{ shoe.id_shoes }}" {% if form_data.r_shoes == shoe.id_shoes %}selected{% endif %}>{{ shoe.sh_name }} ({{ shoe.sh_model }}) - {{ shoe.sh_price }} грн</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="input-and-label-container">
+                        <label for="r_count">Кількість:</label>
+                        <input type="number" id="r_count" name="r_count" min="1" required value="{{ form_data.r_count|default_if_none:'' }}">
+                    </div>
+                    <div class="input-and-label-container">
+                        <label for="r_user">Користувач:</label>
+                        <select id="r_user" name="r_user" required>
+                            {% for user in user_list %}
+                                <option value="{{ user.id_user }}" {% if form_data.r_user == user.id_user %}selected{% endif %}>{{ user.u_username }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <button type="submit" class="btn">Зберегти</button>
+                </form>
+               </div>
+               {% if error_message %}
+               <p style="color: red;">{{ error_message }}</p>
+           {% endif %}
+{% endblock %}

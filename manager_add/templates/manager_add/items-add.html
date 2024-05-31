@@ -1,0 +1,41 @@
+{% extends "manager_app/layout.html" %}
+{% block content %}
+              <div class="form-container">
+                <form id="" method="post" enctype="multipart/form-data" action="{% url 'manager_add:add-item' %}">
+                    {% csrf_token %}
+                    <div class="input-and-label-container">                        <label for="sh_name">Назва взуття:</label>
+                        <input type="text" id="sh_name" name="sh_name"  value="{{ item.sh_name|default_if_none:'' }}">   
+                    </div>
+                    <div class="input-and-label-container">
+                        <label for="sh_model">Модель взуття:</label>
+                        <input type="text" id="sh_model" name="sh_model" value="{{ item.sh_model|default_if_none:'' }}">
+                    </div>
+                    <div class="input-and-label-container">
+                        <label for="sh_size">Розміри взуття:</label>
+                        <input type="number" id="sh_size" name="sh_size" value="{{ item.sh_size|default_if_none:'' }}">
+                    </div>
+                    <div class="input-and-label-container">
+                        <label for="sh_color">Колір взуття:</label>
+                        <input type="text" id="sh_color" name="sh_color" value="{{ item.sh_color|default_if_none:'' }}">
+                    </div>
+                    <div class="input-and-label-container">
+                        <label for="sh_manufacturer">Виробник:</label>
+                        <input type="text" id="sh_manufacturer" name="sh_manufacturer" value="{{ item.sh_manufacturer|default_if_none:'' }}">
+                    </div>
+                    <div class="input-and-label-container">
+                        <label for="sh_count">Кількість:</label>
+                        <input type="number" id="sh_count" name="sh_count" value="{{ item.sh_count|default_if_none:'' }}">
+                    </div>
+                    <div class="input-and-label-container">
+                        <label for="sh_price">Ціна:</label>
+                        <input type="number" id="sh_price" name="sh_price" value="{{ item.sh_price|default_if_none:'' }}">
+                    </div>
+                    <div class="input-and-label-container">
+                        <label for="sh_image">Зображення:</label>
+                        <input type="file" id="sh_image" name="sh_image">
+                    </div>
+                    <button type="submit" class="btn">Зберегти</button>
+                </form>
+            </div>
+
+{% endblock %}

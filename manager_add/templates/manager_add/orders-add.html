@@ -1,0 +1,54 @@
+{% extends "manager_app/layout.html" %}
+{% block content %}
+<div class="form-container">
+    <form method="post" enctype="multipart/form-data" action="{% url 'manager_add:add-order' %}">
+        {% csrf_token %}
+        <div class="input-and-label-container">
+            <label for="o_shoes">Взуття:</label>
+            <select id="o_shoes" name="o_shoes" required>
+                {% for shoe in shoes_list %}
+                    <option value="{{ shoe.id_shoes }}" {% if form_data.o_shoes == shoe.id_shoes %}selected{% endif %}>{{ shoe.sh_name }} ({{ shoe.sh_model }}) - {{ shoe.sh_price }} грн</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="input-and-label-container">
+            <label for="o_count">Кількість:</label>
+            <input type="number" id="o_count" name="o_count" min="1" required value="{{ form_data.o_count|default_if_none:'' }}">
+        </div>
+        <div class="input-and-label-container">
+            <label for="o_recipient">Одержувач:</label>
+            <input type="text" id="o_recipient" name="o_recipient" required value="{{ form_data.o_recipient|default_if_none:'' }}">
+        </div>
+        <div class="input-and-label-container">
+            <label for="o_address">Адреса:</label>
+            <input type="text" id="o_address" name="o_address" required value="{{ form_data.o_address|default_if_none:'' }}">
+        </div>
+        <div class="input-and-label-container">
+            <label for="o_comment">Коментар:</label>
+            <textarea id="o_comment" name="o_comment">{{ form_data.o_comment|default_if_none:'' }}</textarea>
+        </div>
+        <div class="input-and-label-container">
+            <label for="o_status">Статус:</label>
+            <select id="o_status" name="o_status" required>
+                {% for value, name in order_status %}
+                    <option value="{{ value }}" {% if form_data.o_status == value %}selected{% endif %}>{{ name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="input-and-label-container">
+            <label for="o_user">Користувач:</label>
+            <select id="o_user" name="o_user" required>
+                {% for user in user_list %}
+                    <option value="{{ user.id_user }}" {% if form_data.o_user == user.id_user %}selected{% endif %}>{{ user.u_username }}</option>
+                {% endfor %}
+            </select>        </div>
+        <button type="submit" class="btn">Додати замовлення</button>
+    </form>
+
+</div>
+{% if messages %}
+{% for message in messages %}
+<div class="alert alert-{{ message.tags }}" style="color: red;">{{ message }}</div>
+{% endfor %}
+{% endif %}
+{% endblock %}

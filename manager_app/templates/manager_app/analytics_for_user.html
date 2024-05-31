@@ -1,0 +1,88 @@
+{% extends "manager_app/layout.html" %}
+{% block title %}Analytics{% endblock %}
+{% block access %}
+            <li class="menu-item">
+              <a href="{% url 'manager_app:analytics-for-user' %}">
+                <div class="menu-icons">
+                  <i class="fa-solid fa-house"></i>
+                </div>
+                <p class="menu-item-text">Головна</p>
+              </a>
+            </li>
+            <li style="display: none;" class="menu-item">
+              <a href="{% url 'manager_app:users' %}">
+                <div class="menu-icons">
+                  <i class="fa-solid fa-user-group"></i>
+                </div>
+                <p class="menu-item-text">Користувачі</p>
+              </a>
+            </li>
+{% endblock access %}
+{% block content %}
+<div class="dropdown-container">
+    <button class="dropdown-button main-button">
+      <span class="dropdown-title-icon">
+        <i class="fa-solid fa-hryvnia-sign"></i>
+      </span>
+      <span class="dropdown-title text-truncate">UAH</span>
+      <span class="dropdown-arrow" style="display: flex; justify-content: center; align-items: center;">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="-3 -3 20 20">
+          <path
+            d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z" />
+        </svg>
+      </span>
+    </button>
+    <div class="dropdown-list-container">
+      <div class="dropdown-list-wrapper">
+        <ul class="dropdown-list"></ul>
+        <!-- <div class="floating-icon" aria-hidden="true"></div> -->
+      </div>
+    </div>
+  </div>
+<script src="https://d3js.org/d3.v6.min.js"></script>
+<div class="analytics-wrapper">
+<div class="analytics-page-wrapper">
+    <div class="order-sum-container  analytics-column-container">
+        <p class="analytics-container__name-of-column">Загальна сума</p>
+        <p class="analytics-container__calculation">
+            <span class="product-price" data-base-price="{{ total_sum }}">
+                <i class="fa-solid fa-hryvnia-sign"></i>{{ total_sum }}</span>
+        </p>
+    </div>
+    <div class="order-sum-avarage-container  analytics-column-container">
+        <p class="analytics-container__name-of-column">Середня сума</p>
+        <p class="analytics-container__calculation">
+            <span class="product-price" data-base-price="{{ average_sum }}">
+                <i class="fa-solid fa-hryvnia-sign"></i>{{ average_sum }}</span>
+        </p>
+    </div>
+    <div class="order-sum-max-container  analytics-column-container">
+        <p class="analytics-container__name-of-column">Максимальна сума</p>
+        <p class="analytics-container__calculation">
+            <span class="product-price" data-base-price="{{ max_sum }}">
+                <i class="fa-solid fa-hryvnia-sign"></i>{{ max_sum }}</span>
+        </p>
+    </div>
+    <div class="order-sum-min-container  analytics-column-container">
+        <p class="analytics-container__name-of-column">Мінімальна сума</p>
+        <p class="analytics-container__calculation">
+            <span class="product-price" data-base-price="{{ min_sum }}">
+                <i class="fa-solid fa-hryvnia-sign"></i>{{ min_sum }}</span>
+        </p>
+    </div>
+    <div class="order-sum-for-month-container  analytics-column-container">
+        <p class="analytics-container__name-of-column">Загальна сума протягом місяця</p>
+        <p class="analytics-container__calculation">
+            <span class="product-price" data-base-price="{{ total_sum_for_current_month }}">
+                <i class="fa-solid fa-hryvnia-sign"></i>{{ total_sum_for_current_month }}</span>
+        </p>
+    </div>
+</div>
+<div id="chart">{{ chart|safe }}</div>
+
+</div>
+
+<script type="module">
+  
+</script>
+{% endblock %}
